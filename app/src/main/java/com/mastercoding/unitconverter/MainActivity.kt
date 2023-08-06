@@ -1,39 +1,35 @@
 package com.mastercoding.unitconverter
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import kotlin.math.roundToInt
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //declaring view
+        var mass_btn : Button = findViewById(R.id.mass_btn)
+        var length_btn : Button = findViewById(R.id.length_btn)
 
-        //declaring views
-        val converted_txt: TextView = findViewById(R.id.result_txt)
-        val convert_edt: EditText = findViewById(R.id.kilo_edt)
-        val convert_btn: Button = findViewById(R.id.to_pound_btn)
+        //function of mass button
+        mass_btn.setOnClickListener(){
 
-        //adding functionalities
-        convert_btn.setOnClickListener() {
-            var kilos : Double = convert_edt.text.toString().toDouble()
+            //explict intents
+            var i = Intent(this, MassActivity::class.java)
+            startActivity(i)
+        }
 
-            converted_txt.setText(""+convertToPound(kilos)+" \n pounds")
-
-
+        // function of length button
+        length_btn.setOnClickListener(){
+            Toast.makeText(this,
+                            "comming soon..",
+                            Toast.LENGTH_LONG).show()
         }
 
     }
 
-    //function to convert kilos to pounds
-    fun convertToPound(kilos : Double) : Double {
-        var pounds =  kilos * 2.20462
-        var result = (pounds * 10000.00).roundToInt() / 10000.00
-
-        return result
-    }
 }
